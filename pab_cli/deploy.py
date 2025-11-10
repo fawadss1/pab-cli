@@ -7,6 +7,7 @@ import time
 
 from .http_client import APCloudyClient
 from .package import PackageManager
+from .validator import SpiderValidator
 from .exceptions import DeploymentError
 from .utils import print_info, print_error
 
@@ -36,6 +37,10 @@ class DeployManager:
         Returns:
             str: Deployment ID
         """
+        # Validate spider project before deployment
+        validator = SpiderValidator(target_dir)
+        validator.validate_project()
+
         print_info("Creating deployment package...")
         version = self.package_manager.generate_version()
         package_path = self.package_manager.create_deployment_package(target_dir)
