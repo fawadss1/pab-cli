@@ -74,7 +74,7 @@ PAB will automatically package your project and deploy it to the specified proje
 You can also specify additional options:
 
 ```bash
-pab deploy 5465 --version v0.1.0 --target /path/to/project
+pab deploy 5465 --version v0.2.2 --target /path/to/project
 ```
 
 ## Commands
@@ -173,7 +173,21 @@ For support, please contact:
 
 ## Changelog
 
-### v0.1.0
+### v0.2.0 (2025-11-10)
+- **Pre-deployment Validation**: Added comprehensive spider validation before deployment
+  - Syntax error detection using Python's `compile()` function
+  - Undefined variable detection with AST-based static analysis
+  - Import error validation to catch missing modules and import failures
+  - Spider structure validation for Scrapy-specific requirements
+- **Smart Validation**: Script files in `scripts/` directory are skipped during import validation to avoid false positives from API calls
+- **Package Validation**: Added package size validation to prevent uploading empty (0-byte) packages
+- **Enhanced Error Reporting**: Improved error messages with file paths and line numbers for easier debugging
+- **Code Optimization**: Removed unused imports and variables for cleaner codebase
+- **Builtin Support**: Fixed validator to correctly recognize Python builtins (len, str, int, Exception, etc.)
+- **Token Refresh Handling**: Improved HTTP client to read file content into memory for reliable token refresh retries
+- **Debug Logging**: Added detailed logging during package creation for better troubleshooting
+
+### v0.1.0 (2025-08-06)
 - Initial release
 - Basic authentication and deployment functionality
 - Project and spider management
