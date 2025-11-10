@@ -112,9 +112,13 @@ class APCloudyClient:
             APIError: If the upload fails
         """
         try:
+            # Read file content into memory to handle potential token refresh retries
+            # (file pointer would be at EOF after first read during retry)
+            file_content = package_file.read()
+            
             upload_url = urljoin(self.endpoint, 'project/deploy')
             files = {
-                'package': ('spider.tar.gz', package_file, 'application/gzip')
+                'package': ('spider.tar.gz', file_content, 'application/gzip')
             }
             data = {
                 'version': version,

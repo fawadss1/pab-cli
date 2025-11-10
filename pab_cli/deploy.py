@@ -45,6 +45,13 @@ class DeployManager:
         version = self.package_manager.generate_version()
         package_path = self.package_manager.create_deployment_package(target_dir)
 
+        # Validate package size
+        package_size = os.path.getsize(package_path)
+        if package_size == 0:
+            raise DeploymentError("Package file is empty (0 bytes). Please check your project structure.")
+        
+        print_info(f"Package created: {package_size} bytes")
+
         try:
             print_info("Uploading package to APCloudy...")
 
