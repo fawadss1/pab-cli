@@ -14,17 +14,17 @@ init()
 
 def print_success(message):
     """Print success message in green"""
-    print(f"{Fore.GREEN}✓ {message}{Style.RESET_ALL}")
+    print(f"{Fore.GREEN} {message}{Style.RESET_ALL}")
 
 
 def print_error(message):
     """Print error message in red"""
-    print(f"{Fore.RED}✗ {message}{Style.RESET_ALL}", file=sys.stderr)
+    print(f"{Fore.RED} {message}{Style.RESET_ALL}", file=sys.stderr)
 
 
-def print_info(message):
+def print_info(message, end='\n'):
     """Print info message in blue"""
-    print(f"{Fore.BLUE}ℹ {message}{Style.RESET_ALL}")
+    print(f"{Fore.BLUE} {message}{Style.RESET_ALL}", end=end)
 
 
 def print_warning(message):

@@ -2,8 +2,10 @@
 Setup configuration for PAB - APCloudy Deployment Tool
 """
 
-from setuptools import setup, find_packages
 import os
+
+from setuptools import setup, find_packages
+
 
 # Read the README file for long description
 def read_readme():
@@ -12,6 +14,7 @@ def read_readme():
             return fh.read()
     except FileNotFoundError:
         return "PAB CLI - APCloudy Deployment Tool for Scrapy Spiders"
+
 
 # Read requirements
 def read_requirements():
@@ -26,6 +29,7 @@ def read_requirements():
             "tabulate>=0.9.0",
             "cryptography>=3.4.0"
         ]
+
 
 setup(
     name="pab-cli",

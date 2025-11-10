@@ -4,6 +4,7 @@ Authentication module for PAB
 from urllib.parse import urljoin
 
 import requests
+
 from .exceptions import AuthenticationError, APIError
 from .version import __version__
 

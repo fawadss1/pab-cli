@@ -4,6 +4,7 @@ Deployment module for PAB - Main deployment operations
 
 import os
 import time
+
 from .http_client import APCloudyClient
 from .package import PackageManager
 from .exceptions import DeploymentError
@@ -47,7 +48,6 @@ class DeployManager:
 
             deployment_id = result.get('deployment_id')
             if deployment_id:
-                print_info("Package uploaded successfully, processing deployment...")
                 # Wait for deployment to complete
                 self._wait_for_deployment(deployment_id)
                 return deployment_id
@@ -69,7 +69,6 @@ class DeployManager:
         """
         start_time = time.time()
         last_log_length = 0
-        first_status_message = True
 
         while time.time() - start_time < timeout:
             try:
@@ -81,24 +80,22 @@ class DeployManager:
                     return
 
                 elif status == 'building':
-                    if first_status_message:
-                        print_info(f"Deployment status: {status}")
-                        first_status_message = False
-
                     build_log = status_data.get('build_log', '.')
 
                     if build_log and build_log.strip():
                         if len(build_log) > last_log_length:
                             new_logs = build_log[last_log_length:]
-                            print(new_logs, end='')
+                            print_info(new_logs, end='')
                             last_log_length = len(build_log)
 
                     time.sleep(2)
 
                 elif status == 'failed':
-                    error_msg = status_data.get('error')
-                    raise DeploymentError(f"Deployment failed: {error_msg}")
+                    print("")
+                    raise DeploymentError(str(status_data.get('error')))
 
+            except DeploymentError:
+                raise
             except Exception as e:
                 print_error(f"Error checking deployment status: {str(e)}")
                 time.sleep(5)

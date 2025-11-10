@@ -4,6 +4,7 @@ HTTP API client module for PAB - APCloudy API operations
 from urllib.parse import urljoin
 
 import requests
+
 from .exceptions import APIError
 from .version import __version__
 

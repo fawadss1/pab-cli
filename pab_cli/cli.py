@@ -2,9 +2,11 @@
 CLI module for PAB - APCloudy deployment tool
 """
 
-import click
 import sys
+
+import click
 from tabulate import tabulate
+
 from .auth import AuthManager
 from .deploy import DeployManager
 from .config import ConfigManager

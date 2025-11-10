@@ -5,6 +5,7 @@ Configuration management for PAB
 import os
 import json
 import platform
+
 from .exceptions import ConfigurationError
 
 
@@ -24,7 +25,7 @@ class ConfigManager:
         Returns:
             str: API endpoint URL
         """
-        return 'http://10.10.10.11:8000/api/cli'
+        return 'http://10.10.10.178:8000/api/cli'
 
     @staticmethod
     def _get_config_dir():
