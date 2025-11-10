@@ -33,7 +33,7 @@ def read_requirements():
 
 setup(
     name="pab-cli",
-    version="0.2.1",
+    version="0.2.2",
     author="Fawad Ali",
     author_email="fawadstar6@gmail.com",
     description="PAB CLI - APCloudy Deployment Tool for Scrapy Spiders",
